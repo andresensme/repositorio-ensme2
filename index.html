@@ -288,7 +288,7 @@ function hl(card, q) {
     if (!raw) return;
     var escaped = q.replace(/[-[\]/{}()*+?.\\^$|]/g, "\\$&");
     var re = new RegExp("(" + escaped + ")", "gi");
-    el.innerHTML = e(raw).replace(re, "<mark>$1</mark>");
+    if (cls === "paut") { var rauHtml = raA(raw); var esc2 = q.replace(/[-[\]/{}()*+?.\\^$|]/g, "\\$&"); var re2 = new RegExp("(" + esc2 + ")", "gi"); el.innerHTML = "&#128101; " + rauHtml.replace(re2, "<mark>$1</mark>"); } else { el.innerHTML = e(raw).replace(re, "<mark>$1</mark>"); }
   });
 }
 
@@ -296,7 +296,7 @@ function cl2(card) {
   Object.keys(CM).forEach(function(cls) {
     var el = card.querySelector("." + cls);
     if (!el) return;
-    el.innerHTML = e(card.dataset[CM[cls]] || "");
+    if (cls === "paut") { el.innerHTML = "&#128101; " + raA(card.dataset.au || ""); } else { el.innerHTML = e(card.dataset[CM[cls]] || ""); }
   });
 }
 
